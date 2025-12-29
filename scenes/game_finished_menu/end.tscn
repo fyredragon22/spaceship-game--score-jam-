@@ -1,0 +1,133 @@
+[gd_scene load_steps=5 format=3 uid="uid://favhs78gq3v4"]
+
+[ext_resource type="Script" uid="uid://hils326jj853" path="res://scenes/game_finished_menu/end.gd" id="1_aopcv"]
+[ext_resource type="Theme" uid="uid://n7d22alloqdb" path="res://resources/default.tres" id="2_ruwjs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aopcv"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_aopcv"]
+font_size = 32
+
+[node name="End" type="Control"]
+z_index = 29
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aopcv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -7
+position = Vector2(0, -84)
+amount = 10
+lifetime = 2.0
+emission_shape = 3
+emission_rect_extents = Vector2(120, 1)
+gravity = Vector2(0, 100)
+scale_amount_min = 0.5
+scale_amount_max = 3.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(245, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.15
+anchor_right = 0.5
+anchor_bottom = 0.15
+offset_left = -122.5
+offset_right = 122.5
+offset_bottom = 311.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_aopcv")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer2/PanelContainer"]
+custom_minimum_size = Vector2(0, 209)
+layout_mode = 2
+theme = ExtResource("2_ruwjs")
+theme_override_constants/separation = -4
+
+[node name="Score" type="Label" parent="VBoxContainer2/PanelContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Score:"
+label_settings = SubResource("LabelSettings_aopcv")
+horizontal_alignment = 1
+
+[node name="Label1" type="Label" parent="VBoxContainer2/PanelContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.3137255, 0.85490197, 0.89411765, 1)
+theme_override_font_sizes/font_size = 32
+text = "score"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer2/PanelContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.9019608, 0.8627451, 0.08235294, 1)
+theme_override_font_sizes/font_size = 32
+text = "score"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer2/PanelContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0.75686276, 0.38431373, 1)
+theme_override_font_sizes/font_size = 32
+text = "score"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="VBoxContainer2/PanelContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0.07450981, 0.16078432, 1)
+theme_override_font_sizes/font_size = 32
+text = "score"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_ruwjs")
+
+[node name="PlayAgain" type="Button" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Play Again"
+
+[node name="Return" type="Button" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Return to Menu"
+
+[node name="Quit" type="Button" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/PlayAgain" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

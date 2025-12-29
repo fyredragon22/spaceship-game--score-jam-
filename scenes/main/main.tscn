@@ -1,0 +1,154 @@
+[gd_scene load_steps=11 format=3 uid="uid://pnupt35uiwpv"]
+
+[ext_resource type="Shader" uid="uid://c3ihppjd6s3ep" path="res://resources/main1.gdshader" id="1_6q06x"]
+[ext_resource type="Script" uid="uid://cqkylip41w0hh" path="res://scenes/main/player_manager.gd" id="1_l3cfh"]
+[ext_resource type="Script" uid="uid://bjxwyujhvljoj" path="res://scenes/main/scoredisplay.gd" id="3_6q06x"]
+[ext_resource type="PackedScene" uid="uid://ciggse8galr8s" path="res://components/asteroid/astroid_spawner.tscn" id="3_hujxm"]
+[ext_resource type="PackedScene" uid="uid://favhs78gq3v4" path="res://scenes/game_finished_menu/end.tscn" id="5_b1x3f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5qli"]
+size = Vector2(24, 195)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
+size = Vector2(247, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
+size = Vector2(234, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyhfs"]
+size = Vector2(20, 166)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ipv34"]
+shader = ExtResource("1_6q06x")
+shader_parameter/noise_intensity = 0.22000001045
+
+[node name="Main1" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(320, 240)
+scale = Vector2(3, 3)
+
+[node name="PlayerManager" type="Node2D" parent="Node2D"]
+script = ExtResource("1_l3cfh")
+
+[node name="spawn1" type="Marker2D" parent="Node2D/PlayerManager"]
+position = Vector2(-80, -63)
+
+[node name="spawn2" type="Marker2D" parent="Node2D/PlayerManager"]
+position = Vector2(-80, -27)
+
+[node name="spawn3" type="Marker2D" parent="Node2D/PlayerManager"]
+position = Vector2(-79, 27)
+
+[node name="spawn4" type="Marker2D" parent="Node2D/PlayerManager"]
+position = Vector2(-80, 62)
+
+[node name="Camera2D" type="Camera2D" parent="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Node2D"]
+position = Vector2(136, 0)
+emission_shape = 3
+emission_rect_extents = Vector2(1, 100)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 351.72
+initial_velocity_max = 772.41
+scale_amount_min = 0.5
+scale_amount_max = 3.0
+
+[node name="Boundaries" type="StaticBody2D" parent="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Boundaries"]
+position = Vector2(-119, -4.5)
+shape = SubResource("RectangleShape2D_o5qli")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/Boundaries"]
+position = Vector2(14.5, -94)
+shape = SubResource("RectangleShape2D_0wfyh")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D/Boundaries"]
+position = Vector2(1, 90.5)
+shape = SubResource("RectangleShape2D_sugp2")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Node2D/Boundaries"]
+position = Vector2(117, -2)
+shape = SubResource("RectangleShape2D_jyhfs")
+
+[node name="AstroidSpawner" parent="Node2D" node_paths=PackedStringArray("point_1", "point_2") instance=ExtResource("3_hujxm")]
+position = Vector2(369, 0)
+point_1 = NodePath("../Marker2D")
+point_2 = NodePath("../Marker2D2")
+
+[node name="Marker2D" type="Marker2D" parent="Node2D"]
+position = Vector2(132.33333, -80)
+
+[node name="Marker2D2" type="Marker2D" parent="Node2D"]
+position = Vector2(132, 80)
+
+[node name="background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="background"]
+z_index = -5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Menu" type="CanvasLayer" parent="."]
+
+[node name="scoredisplay" type="VBoxContainer" parent="Menu"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_6q06x")
+
+[node name="Label1" type="Label" parent="Menu/scoredisplay"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.3137255, 0.85490197, 0.89411765, 1)
+theme_override_font_sizes/font_size = 32
+text = "score"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Menu/scoredisplay"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.9019608, 0.8627451, 0.08235294, 1)
+theme_override_font_sizes/font_size = 32
+text = "score"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Menu/scoredisplay"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0.75686276, 0.38431373, 1)
+theme_override_font_sizes/font_size = 32
+text = "score"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="Menu/scoredisplay"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0.07450981, 0.16078432, 1)
+theme_override_font_sizes/font_size = 32
+text = "score"
+horizontal_alignment = 1
+
+[node name="End" parent="Menu" instance=ExtResource("5_b1x3f")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Shaders" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Shader" type="ColorRect" parent="Shaders"]
+visible = false
+z_index = 30
+material = SubResource("ShaderMaterial_ipv34")
+offset_left = -153.0
+offset_top = -120.0
+offset_right = 178.0
+offset_bottom = 116.0
