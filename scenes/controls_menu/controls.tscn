@@ -1,0 +1,149 @@
+[gd_scene load_steps=9 format=3 uid="uid://crsov0kneen0r"]
+
+[ext_resource type="Script" uid="uid://dodnnybhkxx3k" path="res://scenes/controls_menu/controls.gd" id="1_qaw2s"]
+[ext_resource type="Texture2D" uid="uid://cjlavwmnfl6kv" path="res://assets/images/Icons.png" id="2_raws5"]
+[ext_resource type="Theme" uid="uid://n7d22alloqdb" path="res://resources/default.tres" id="3_vl1s1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qaw2s"]
+atlas = ExtResource("2_raws5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qaw2s"]
+load_path = "res://.godot/imported/Icons.png-de343b560db3f37d97665fe4a24401e1.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_raws5"]
+atlas = SubResource("CompressedTexture2D_qaw2s")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vl1s1"]
+atlas = ExtResource("2_raws5")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncxrc"]
+atlas = ExtResource("2_raws5")
+region = Rect2(32, 32, 32, 32)
+
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qaw2s")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.143
+anchor_right = 0.7
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/GridContainer/VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_qaw2s")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 16
+text = "W - Up
+A - Left
+S - Down
+D - Right
+E - Shoot"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/GridContainer/VBoxContainer2"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_raws5")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 16
+text = "T - Up
+F - Left
+H - Down
+G - Right
+Y - Shoot"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/GridContainer/VBoxContainer3"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_vl1s1")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 16
+text = "I - Up
+J - Left
+L - Down
+K - Right
+O - Shoot"
+horizontal_alignment = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/GridContainer/VBoxContainer4"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ncxrc")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 16
+text = "up arrow - Up
+left arrow- Left
+down arrow - Down
+right arrow - Right
+0 - Shoot"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_vl1s1")
+theme_override_font_sizes/font_size = 16
+text = "Back"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

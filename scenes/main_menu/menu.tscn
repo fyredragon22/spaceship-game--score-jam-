@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcr1lasrjukbx"]
+
+[ext_resource type="Script" uid="uid://b0qcqo8bhwuuu" path="res://scenes/main_menu/menu.gd" id="1_0qkqs"]
+[ext_resource type="Theme" uid="uid://n7d22alloqdb" path="res://resources/default.tres" id="2_6ufdq"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vjb58"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(480, 1, 0)
+gravity = Vector3(0, 100, 0)
+scale_min = 0.5
+scale_max = 3.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_vjb58"]
+font_size = 64
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0qkqs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = -7
+position = Vector2(319, -38)
+amount = 50
+lifetime = 5.0
+preprocess = 5.0
+fixed_fps = 0
+draw_order = 0
+process_material = SubResource("ParticleProcessMaterial_vjb58")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("2_6ufdq")
+text = "Astroid Evader"
+label_settings = SubResource("LabelSettings_vjb58")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme = ExtResource("2_6ufdq")
+
+[node name="Start" type="Button" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Start"
+
+[node name="Controls" type="Button" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Controls"
+
+[node name="Quit" type="Button" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
