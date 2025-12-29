@@ -1,0 +1,15 @@
+extends Node2D
+
+class_name Bullet
+
+var owner_player: Node = null
+
+const SPEED: int = 200
+
+
+func _process(delta: float) -> void:
+	position += transform.x * SPEED * delta
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()
